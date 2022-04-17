@@ -1,0 +1,11 @@
+.empty {
+	width: 100%;
+	height: 40vh;
+	margin: 100px;
+}
+.empty img {
+	margin-bottom: 30px;
+}
+.empty h3 {
+	font-size: 2.5em;
+}

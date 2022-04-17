@@ -4,6 +4,7 @@ export const actions = {
 	setProducts: 'SET_PRODUCTS',
 	setIsLoading: 'SET_IS_LOADING',
 	setCategories: 'SET_CATEGORIES',
+	setIsActive: 'SET_IS_ACTIVE',
 };
 
 export const setProducts = products => ({
@@ -11,7 +12,7 @@ export const setProducts = products => ({
 	payload: products,
 });
 
-const setIsLoading = isLoading => ({
+export const setIsLoading = isLoading => ({
 	type: actions.setIsLoading,
 	payload: isLoading,
 });
@@ -19,6 +20,11 @@ const setIsLoading = isLoading => ({
 export const setCategories = categories => ({
 	type: actions.setCategories,
 	payload: categories,
+});
+
+export const setIsActive = isActive => ({
+	type: actions.setIsActive,
+	payload: isActive,
 });
 
 export const getProductsThunk = () => {
@@ -51,6 +57,22 @@ export const filterCategoryThunk = id => {
 				`https://ecommerce-api-react.herokuapp.com/api/v1/products/?category=${id}`
 			)
 			.then(response => dispatch(setProducts(response.data)))
-			.finally(() => dispatch(setIsLoading(false)));
+			.finally(() => {
+				dispatch(setIsActive(true));
+				dispatch(setIsLoading(false));
+			});
+	};
+};
+
+export const getProductThunk = id => {
+	return dispatch => {
+		// dispatch(setIsLoading(true));
+		return (
+			axios
+				.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/${id}`)
+				// .then(response => dispatch(setProducts(response.data)))
+				.then(response => console.log(response.data))
+		);
+		// .finally(() => dispatch(setIsLoading(false)));
 	};
 };

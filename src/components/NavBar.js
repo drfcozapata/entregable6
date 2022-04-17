@@ -1,5 +1,8 @@
 import React from 'react';
-import '../styles/header.css';
+import '../styles/nav-bar.css';
+import { ReactComponent as User } from '../assets/user.svg';
+import { ReactComponent as Archive } from '../assets/archive.svg';
+import { ReactComponent as Cart } from '../assets/cart.svg';
 
 const NavBar = () => {
 	return (
@@ -8,13 +11,13 @@ const NavBar = () => {
 			<nav>
 				<ul className="navegation">
 					<li className="text-center">
-						<h3>L</h3>
+						<User />
 					</li>
 					<li className="text-center">
-						<h3>F</h3>
+						<Archive />
 					</li>
 					<li className="text-center">
-						<h3>S</h3>
+						<Cart />
 					</li>
 				</ul>
 			</nav>
