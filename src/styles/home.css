@@ -10,50 +10,16 @@
 	margin-bottom: 40px;
 }
 .form-search input {
-	border-radius: 10px 0 0 10px;
+	border-radius: 8px 0 0 8px;
 	padding: 0 20px;
 	font-size: 18px;
 }
 .form-search button {
-	border-radius: 0 10px 10px 0;
+	border-radius: 0 8px 8px 0;
 	padding: 0 30px;
 	font-size: 18px;
 	border: none;
 	background: #f85555;
-	color: #fff;
-}
-.products .card {
-	border-radius: 10px;
-	margin: 0 20px 20px 20px;
-	transition: All 0.3s ease-in-out;
-}
-.products .card:hover {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transform: scale(1.01);
-}
-.products .card-header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: transparent;
-	min-height: 250px;
-}
-.products img {
-	max-width: 75%;
-	max-height: 180px;
-	margin: 0 auto;
-}
-.products span {
-	font-size: 12px;
-	font-weight: normal;
-	color: #929292;
-}
-.products .button-shopping {
-	height: 55px;
-	width: 55px;
-	border: none;
-	border-radius: 50%;
-	background-color: #f85555;
 	color: #fff;
 }
 .empty {
@@ -62,6 +28,10 @@
 	justify-content: center;
 	align-items: center;
 }
+.products-grid {
+	margin-left: 30px;
+	margin-right: 30px;
+}
 
 @media screen and (min-width: 768px) {
 	.main {
@@ -69,9 +39,9 @@
 		grid-template-columns: 2.5fr 9.5fr;
 		grid-gap: 2rem;
 	}
-	.price {
+	/* .price {
 		margin-bottom: 40px;
-	}
+	} */
 	.form-price__filter {
 		height: 45px;
 		display: grid;
@@ -86,7 +56,7 @@
 		color: #929292;
 	}
 	.form-price__filter input {
-		border-radius: 10px;
+		border-radius: 8px;
 		padding: 7px 10px;
 		font-size: 14px;
 	}
@@ -142,21 +112,24 @@
 	.categories .button-category.active {
 		color: #f85555;
 	}
-	.products {
+	.products-grid {
 		margin-left: 30px;
+		margin-right: 5px;
 	}
 	.products-cards {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 2rem;
 	}
-	.products-cards .card {
-		margin: 0;
-	}
 }
 
 @media screen and (min-width: 992px) {
+	.products-grid {
+		margin-left: 40px;
+		margin-right: 0;
+	}
 	.products-cards {
 		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 3rem;
 	}
 }

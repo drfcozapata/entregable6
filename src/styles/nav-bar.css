@@ -22,7 +22,9 @@ li {
 	font-weight: bold;
 	color: #f85555;
 }
-
+.header h2 a {
+	text-decoration: none;
+}
 .header h3 {
 	font-size: 2rem;
 }

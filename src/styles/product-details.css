@@ -1,0 +1,139 @@
+.details {
+	margin-top: 40px;
+	color: #515151;
+}
+.product-details {
+	margin: 60px 40px 70px 40px;
+}
+.detail-nav {
+	display: flex;
+	justify-content: space-start;
+	gap: 20px;
+}
+.detail-nav h3 {
+	margin: 0;
+	padding: 0;
+}
+.detail-nav__arrow {
+	padding-top: 1px;
+	color: #f85555;
+}
+
+.images {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+}
+.slider-product {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.slider-product__arrow {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	border: none;
+	color: #f85555;
+}
+.detail-img {
+	max-width: 350px;
+	max-height: 350px;
+	margin-bottom: 30px;
+}
+.thumb-slide {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 50px;
+}
+.thumb-slide img {
+	max-width: 60px;
+	max-height: 60px;
+}
+
+.description h2 {
+	font-size: 22px;
+	margin-bottom: 15px;
+}
+.description p.info {
+	font-size: 14px;
+	line-height: 1.8;
+	margin-bottom: 40px;
+}
+.description p.price-detail {
+	font-size: 15px;
+	color: rgba(0, 0, 0, 0.2);
+}
+.description-info {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin-bottom: 20px;
+}
+.button-add-cart {
+	height: 50px;
+	width: 100%;
+	background-color: #f85555;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.quantity-counter {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.quantity-btn {
+	height: 28px;
+	width: 28px;
+	border: 1px solid #ccc;
+	background-color: transparent;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 0.9;
+	cursor: pointer;
+}
+.quantity-value {
+	height: 28px;
+	width: 28px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background-color: transparent;
+	font-size: 16px;
+	text-align: center;
+	line-height: 1.7;
+	padding: 0 30px 0 20px;
+}
+
+.detail-similars .title-similars {
+	margin: 40px 0;
+}
+h3 span {
+	color: #f85555;
+}
+@media screen and (min-width: 768px) {
+	.product-details {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 40px;
+	}
+	.products-cards-detail {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 2rem;
+	}
+}
+@media screen and (min-width: 992px) {
+	.products-cards-detail {
+		margin: 0 100px;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 3rem;
+	}
+}

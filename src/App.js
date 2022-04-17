@@ -15,6 +15,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/products/:id" element={<ProductDetail />} />
 				<Route path="/shop/:id" element={<Shop />} />
+				<Route path="/purchases" element={<Shop />} />
 			</Routes>
 			<Footer />
 		</HashRouter>

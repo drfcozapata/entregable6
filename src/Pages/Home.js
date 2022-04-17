@@ -2,30 +2,40 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	filterCategoryThunk,
+	filterNameThunk,
 	getCategoriesThunk,
 	getProductsThunk,
 } from '../redux/actions';
 import '../styles/home.css';
-import { ReactComponent as Cart } from '../assets/cart3.svg';
 import { ReactComponent as UpArrow } from '../assets/up-arrow.svg';
+import { ReactComponent as GlassSearch } from '../assets/glass-search.svg';
 import Empty from '../components/Empty';
 import { Link } from 'react-router-dom';
+import ProductCard from '../components/ProductCard';
 
 const Home = () => {
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products);
 	const categories = useSelector(state => state.categories);
-	const isActive = useSelector(state => state.isActive);
+	const [searchProduct, setSearchProduct] = React.useState('');
+	// const isActive = useSelector(state => state.isActive);
 
 	useEffect(() => {
 		dispatch(getProductsThunk());
 		dispatch(getCategoriesThunk());
 	}, [dispatch]);
 
+	const searchProductSubmit = e => {
+		e.preventDefault();
+		dispatch(filterNameThunk(searchProduct));
+		setSearchProduct('');
+	};
+
 	return (
 		<div className="container">
 			<div className="main">
-				<sidebar>
+				{/* Columna para filtrado de productos */}
+				<div className="filter-grid">
 					<div className="price">
 						<div className="title">
 							<h3>Price</h3>
@@ -52,8 +62,9 @@ const Home = () => {
 							<UpArrow />
 						</div>
 						<button
-							disabled={!isActive ? true : false}
-							className={`button-category ${!isActive ? 'active' : ''}`}
+							// disabled={!isActive ? true : false}
+							// className={`button-category ${!isActive ? 'active' : ''}`}
+							className="button-category active"
 							onClick={() => {
 								dispatch(getProductsThunk());
 							}}
@@ -63,8 +74,9 @@ const Home = () => {
 						{categories &&
 							categories.data?.categories.map(category => (
 								<button
-									disabled={isActive ? true : false}
-									className={`button-category ${isActive ? 'active' : ''}`}
+									// disabled={isActive ? true : false}
+									// className={`button-category ${isActive ? 'active' : ''}`}
+									className="button-category"
 									key={category.id}
 									onClick={() => {
 										dispatch(filterCategoryThunk(category.id));
@@ -74,47 +86,48 @@ const Home = () => {
 								</button>
 							))}
 					</div>
-				</sidebar>
-				<div className="products">
-					<form className="form-group d-flex form-search">
-						<input className="form-control" type="text" />
-						<button className="button-search">Search</button>
+				</div>
+
+				{/* Columna para presentación de los productos */}
+				<div className="products-grid">
+					{/* Búsqueda por nombre */}
+					<form
+						className="form-group d-flex justify-content-center form-search"
+						onSubmit={searchProductSubmit}
+					>
+						<input
+							className="form-control w-75"
+							type="text"
+							value={searchProduct}
+							onChange={e => setSearchProduct(e.target.value)}
+						/>
+						<button className="button-search" placeholder="">
+							<GlassSearch />
+						</button>
 					</form>
-					<ul className="products-cards">
+
+					{/* Tarjetas de productos */}
+					<div>
 						{products && products.data?.products.length > 0 ? (
-							products.data?.products.map(productsItem => (
-								<Link
-									to={`/products/${productsItem.id}`}
-									style={{ textDecoration: 'none', color: '#515151' }}
-								>
-									<li className="card" key={productsItem.id}>
-										<div className="card-header">
-											<img
-												className="mt-3 mb-3"
-												src={productsItem.productImgs[0]}
-												alt="Imagen de {productsItem.title}"
-											/>
-										</div>
-										<div className="card-body">
-											<h4>{productsItem.title}</h4>
-										</div>
-										<div className="d-flex justify-content-between p-3">
-											<h3>
-												<span>Price</span> <br />${productsItem.price}
-											</h3>
-											<button className="button-shopping">
-												<Cart style={{ width: '55px' }} />
-											</button>
-										</div>
-									</li>
-								</Link>
-							))
+							<ul className="products-cards">
+								{products.data?.products.map(productsItem => (
+									<Link
+										to={`/products/${productsItem?.id}`}
+										style={{ textDecoration: 'none', color: '#515151' }}
+									>
+										<ProductCard
+											key={productsItem?.id}
+											productsItem={productsItem}
+										/>
+									</Link>
+								))}
+							</ul>
 						) : (
 							<div className="empty">
 								<Empty />
 							</div>
 						)}
-					</ul>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,60 @@
+.card {
+	border-radius: 8px;
+	margin: 0 0 20px 0;
+}
+.card-header {
+	background-color: transparent;
+	min-height: 270px;
+}
+.card .card-title {
+	min-height: 41px;
+	font-size: 1.75rem;
+}
+.card .hover-animation {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 200px;
+	max-height: 200px;
+	margin: 0 auto;
+}
+.card .hover-animation img.img-back {
+	opacity: 0;
+	position: absolute;
+	transition: all 0.8s ease-in-out;
+}
+.card .hover-animation:hover img.img-back {
+	opacity: 1;
+	background-color: #fff;
+}
+.card .hover-animation:hover img.img-front {
+	opacity: 0;
+	background-color: #fff;
+}
+.card .hover-animation img {
+	max-width: 200px;
+	max-height: 200px;
+	object-fit: contain;
+	margin: 40px auto 0 auto;
+	display: block;
+}
+.card span {
+	font-size: 12px;
+	font-weight: normal;
+	color: #929292;
+}
+.card .button-shopping {
+	height: 55px;
+	width: 55px;
+	border: none;
+	border-radius: 50%;
+	background-color: #f85555;
+	color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+	.card {
+		margin: 0;
+	}
+}

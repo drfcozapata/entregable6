@@ -58,21 +58,22 @@ export const filterCategoryThunk = id => {
 			)
 			.then(response => dispatch(setProducts(response.data)))
 			.finally(() => {
-				dispatch(setIsActive(true));
+				// dispatch(setIsActive(true));
 				dispatch(setIsLoading(false));
 			});
 	};
 };
 
-export const getProductThunk = id => {
+export const filterNameThunk = name => {
 	return dispatch => {
-		// dispatch(setIsLoading(true));
-		return (
-			axios
-				.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/${id}`)
-				// .then(response => dispatch(setProducts(response.data)))
-				.then(response => console.log(response.data))
-		);
-		// .finally(() => dispatch(setIsLoading(false)));
+		dispatch(setIsLoading(true));
+		return axios
+			.get(
+				`https://ecommerce-api-react.herokuapp.com/api/v1/products/?query=${name}`
+			)
+			.then(response => dispatch(setProducts(response.data)))
+			.finally(() => {
+				dispatch(setIsLoading(false));
+			});
 	};
 };

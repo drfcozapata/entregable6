@@ -10,10 +10,10 @@ const Footer = () => {
 		<div>
 			<footer className="footer">
 				<div className="container text-center">
-					<h5>
+					<h4>
 						All rights reserved &copy; {new Date().getFullYear()} by Francisco
 						Zapata
-					</h5>
+					</h4>
 					<div className="socials">
 						<div>
 							<a
