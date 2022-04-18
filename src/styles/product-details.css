@@ -123,34 +123,6 @@ button.thumb {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.quantity-counter {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	margin-bottom: 20px;
-}
-.quantity-btn {
-	height: 28px;
-	width: 28px;
-	border: 1px solid #ccc;
-	background-color: transparent;
-	font-size: 20px;
-	font-weight: bold;
-	text-align: center;
-	line-height: 0.9;
-	cursor: pointer;
-}
-.quantity-value {
-	height: 28px;
-	width: 28px;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	background-color: transparent;
-	font-size: 16px;
-	text-align: center;
-	line-height: 1.7;
-	padding: 0 30px 0 20px;
-}
 
 .detail-similars .title-similars {
 	margin: 40px 0;

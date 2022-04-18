@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -12,12 +12,12 @@ const store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
 );
-const root = createRoot(document.getElementById('root'));
 
-root.render(
+ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<App />
 		</Provider>
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById('root')
 );

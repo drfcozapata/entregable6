@@ -1,14 +1,17 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ReactComponent as CircleUser } from '../assets/circle-user.svg';
 import { ReactComponent as Envelope } from '../assets/envelope.svg';
 import { ReactComponent as Key } from '../assets/key.svg';
+import { loginThunk } from '../redux/actions';
 import '../styles/login-form.css';
 
 const LoginForm = ({ isLogin, setIsLogin }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [userName, setUserName] = useState('');
+	const dispatch = useDispatch();
 
 	const handleLogin = e => {
 		e.preventDefault();
@@ -16,18 +19,12 @@ const LoginForm = ({ isLogin, setIsLogin }) => {
 			email,
 			password,
 		};
-		axios
-			.post(
-				'https://ecommerce-api-react.herokuapp.com/api/v1/users/login/',
-				userCredentials
-			)
-			.then(res => {
-				const user = `${res.data?.data.user.firstName} ${res.data?.data.user.lastName}`;
-				setUserName(user);
-				// console.log(res.data);
-				// console.log(user);
-				localStorage.setItem('token', res.data?.data.token);
-			});
+		dispatch(loginThunk(userCredentials)).then(res => {
+			const user = `${res.data?.data.user.firstName} ${res.data?.data.user.lastName}`;
+			setUserName(user);
+			localStorage.setItem('token', res.data?.data.token);
+			localStorage.setItem('userName', user);
+		});
 
 		setEmail('');
 		setPassword('');

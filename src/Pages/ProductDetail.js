@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { filterCategoryThunk, getProductsThunk } from '../redux/actions';
+import {
+	addProductThunk,
+	filterCategoryThunk,
+	getProductsThunk,
+} from '../redux/actions';
 import '../styles/product-details.css';
 import { ReactComponent as RightArrow } from '../assets/right-arrow.svg';
 import { ReactComponent as ChevronLeft } from '../assets/chevron-left.svg';
 import { ReactComponent as ChevronRight } from '../assets/chevron-right.svg';
-import ProductCard from '../components/ProductCard';
+import { Quantity, ProductCard } from '../components';
 
 const ProductDetail = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products);
 	const [slideIndex, setSlideIndex] = useState(1);
+	const [quantity, setQuantity] = useState(1);
+	// const [product, setProduct] = useState('');
 
 	useEffect(() => {
 		dispatch(getProductsThunk());
@@ -48,7 +54,13 @@ const ProductDetail = () => {
 	const categoryFound = products.data?.products.filter(
 		productItem => productItem.id !== productsFound?.id
 	);
-	console.log(categoryFound);
+	// console.log(categoryFound);
+
+	const addToCart = () => {
+		// const newProduct = { product: id, quantity: `${quantity}` };
+		// dispatch(addProductThunk(newProduct));
+		console.log({ product: id, quantity: `${quantity}` });
+	};
 
 	return (
 		<div className="container details">
@@ -104,18 +116,15 @@ const ProductDetail = () => {
 							<p className="price-detail">Price</p>
 							<h2>${productsFound?.price}</h2>
 						</div>
+						{/* Contador */}
 						<div>
 							<p className="price-detail">Quantity</p>
-							<div className="quantity-counter">
-								<button className="quantity-btn">-</button>
-								<h3 className="quantity-value" type="number">
-									1
-								</h3>
-								<button className="quantity-btn">+</button>
-							</div>
+							<Quantity quantity={quantity} setQuantity={setQuantity} />
 						</div>
 					</div>
-					<button className="button-add-cart">Add to cart</button>
+					<button className="button-add-cart" onClick={() => addToCart()}>
+						Add to cart
+					</button>
 				</div>
 			</main>
 

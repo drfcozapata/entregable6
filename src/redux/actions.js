@@ -7,6 +7,8 @@ export const actions = {
 	setIsActive: 'SET_IS_ACTIVE',
 };
 
+const token = localStorage.getItem('token');
+
 export const setProducts = products => ({
 	type: actions.setProducts,
 	payload: products,
@@ -75,5 +77,34 @@ export const filterNameThunk = name => {
 			.finally(() => {
 				dispatch(setIsLoading(false));
 			});
+	};
+};
+
+export const loginThunk = userCredentials => {
+	return dispatch => {
+		dispatch(setIsLoading(true));
+		return axios
+			.post(
+				'https://ecommerce-api-react.herokuapp.com/api/v1/users/login/',
+				userCredentials
+			)
+			.finally(() => dispatch(setIsLoading(false)));
+	};
+};
+
+export const addProductThunk = product => {
+	return dispatch => {
+		dispatch(setIsLoading(true));
+		return axios
+			.post(
+				'https://ecommerce-api-react.herokuapp.com/api/v1/cart/',
+				product,
+				token
+			)
+			.then(response => {
+				console.log(response.data);
+			})
+			.catch(error => console.log(error))
+			.finally(() => dispatch(setIsLoading(false)));
 	};
 };
