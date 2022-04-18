@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { filterCategoryThunk, getProductsThunk } from '../redux/actions';
@@ -12,6 +12,7 @@ const ProductDetail = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products);
+	const [slideIndex, setSlideIndex] = useState(1);
 
 	useEffect(() => {
 		dispatch(getProductsThunk());
@@ -20,6 +21,24 @@ const ProductDetail = () => {
 	const productsFound = products.data?.products.find(
 		productItem => productItem.id === Number(id)
 	);
+
+	const nextSlide = () => {
+		if (slideIndex !== productsFound?.productImgs.length) {
+			setSlideIndex(slideIndex + 1);
+		} else if (slideIndex === productsFound?.productImgs.length) {
+			setSlideIndex(1);
+		}
+	};
+	const prevSlide = () => {
+		if (slideIndex !== 1) {
+			setSlideIndex(slideIndex - 1);
+		} else if (slideIndex === 1) {
+			setSlideIndex(productsFound?.productImgs.length);
+		}
+	};
+	const moveThumb = index => {
+		setSlideIndex(index);
+	};
 
 	const categoryId = productsFound?.category.id;
 	useEffect(() => {
@@ -46,30 +65,37 @@ const ProductDetail = () => {
 
 			{/* Detalles del producto */}
 			<main className="product-details">
-				<div className="images">
-					<div className="slider-product">
-						<button className="slider-product__arrow">
-							<ChevronLeft />
-						</button>
-						<img
-							className="detail-img"
-							src={productsFound?.productImgs[0]}
-							alt={`${productsFound?.title} 1`}
-						/>
-						<button className="slider-product__arrow">
-							<ChevronRight />
-						</button>
-					</div>
-					<div className="thumb-slide">
+				{/* Slider de imágenes del producto */}
+				<div className="container-slider">
+					{productsFound?.productImgs.map((img, index) => (
+						<div
+							key={Number(index) + 1}
+							className={
+								slideIndex === index + 1 ? 'slide active-anim' : 'slide'
+							}
+						>
+							<img src={img} alt={`${productsFound?.title} ${index + 1}`} />
+						</div>
+					))}
+					<button className="button-slider prev" onClick={prevSlide}>
+						<ChevronLeft />
+					</button>
+					<button className="button-slider next" onClick={nextSlide}>
+						<ChevronRight />
+					</button>
+					<div className="thumb-slider">
 						{productsFound?.productImgs.map((img, index) => (
-							<img
-								key={index}
-								src={img}
-								alt={`${productsFound?.title} ${index + 1}`}
-							/>
+							<button
+								key={Number(index) + 1}
+								onClick={() => moveThumb(index + 1)}
+								className={slideIndex === index + 1 ? 'thumb active' : 'thumb'}
+							>
+								<img src={img} alt={`${productsFound?.title} ${index + 1}`} />
+							</button>
 						))}
 					</div>
 				</div>
+				{/* Descripción del producto y precio */}
 				<div className="description">
 					<h2>{productsFound?.title}</h2>
 					<p className="info">{productsFound?.description}</p>

@@ -36,7 +36,7 @@ const Home = () => {
 			<div className="main">
 				{/* Columna para filtrado de productos */}
 				<div className="filter-grid">
-					<div className="price">
+					<div className="filter-price">
 						<div className="title">
 							<h3>Price</h3>
 							<UpArrow />
@@ -56,7 +56,7 @@ const Home = () => {
 							</div>
 						</form>
 					</div>
-					<div className="categories">
+					<div className="filter-categories">
 						<div className="title">
 							<h3>Categories</h3>
 							<UpArrow />

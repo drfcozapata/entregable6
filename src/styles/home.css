@@ -2,8 +2,11 @@
 	margin-top: 40px;
 	color: #515151;
 }
-.categories {
+.filter-grid {
 	display: none;
+}
+.filter-price {
+	margin-bottom: 30px;
 }
 .form-search {
 	height: 50px;
@@ -39,9 +42,9 @@
 		grid-template-columns: 2.5fr 9.5fr;
 		grid-gap: 2rem;
 	}
-	/* .price {
-		margin-bottom: 40px;
-	} */
+	.filter-grid {
+		display: block;
+	}
 	.form-price__filter {
 		height: 45px;
 		display: grid;
@@ -82,14 +85,14 @@
 		background: #f85555;
 		color: #fff;
 	}
-	.categories {
+	.filter-categories {
 		display: flex;
 		flex-direction: column;
 		justify-content: start;
 		align-items: start;
 	}
-	.price .title,
-	.categories .title {
+	.filter-price .title,
+	.filter-categories .title {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -99,17 +102,17 @@
 		border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 		margin-bottom: 10px;
 	}
-	.categories .button-category {
+	.filter-categories .button-category {
 		padding: 0.5rem 2rem;
 		border: none;
 		background-color: transparent;
 		color: #515151;
 		font-size: 14px;
 	}
-	.categories .button-category:hover {
+	.filter-categories .button-category:hover {
 		color: #f85555;
 	}
-	.categories .button-category.active {
+	.filter-categories .button-category.active {
 		color: #f85555;
 	}
 	.products-grid {
