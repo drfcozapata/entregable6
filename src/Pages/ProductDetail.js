@@ -18,7 +18,6 @@ const ProductDetail = () => {
 	const products = useSelector(state => state.products);
 	const [slideIndex, setSlideIndex] = useState(1);
 	const [quantity, setQuantity] = useState(1);
-	// const [product, setProduct] = useState('');
 
 	useEffect(() => {
 		dispatch(getProductsThunk());
@@ -54,12 +53,11 @@ const ProductDetail = () => {
 	const categoryFound = products.data?.products.filter(
 		productItem => productItem.id !== productsFound?.id
 	);
-	// console.log(categoryFound);
 
 	const addToCart = () => {
-		// const newProduct = { product: id, quantity: `${quantity}` };
-		// dispatch(addProductThunk(newProduct));
-		console.log({ product: id, quantity: `${quantity}` });
+		const newProduct = { product: id, quantity: `${quantity}` };
+		dispatch(addProductThunk(newProduct));
+		console.log(newProduct);
 	};
 
 	return (
@@ -134,14 +132,13 @@ const ProductDetail = () => {
 				</h3>
 				<ul className="products-cards-detail">
 					{categoryFound?.map(product => (
-						<li key={product.id}>
-							<Link
-								to={`/products/${product.id}`}
-								style={{ textDecoration: 'none', color: '#515151' }}
-							>
-								<ProductCard productsItem={product} />
-							</Link>
-						</li>
+						<Link
+							key={product.id}
+							to={`/products/${product.id}`}
+							style={{ textDecoration: 'none', color: '#515151' }}
+						>
+							<ProductCard productsItem={product} />
+						</Link>
 					))}
 				</ul>
 			</div>

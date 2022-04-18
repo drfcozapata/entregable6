@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ReactComponent as CircleUser } from '../assets/circle-user.svg';
 import { ReactComponent as Envelope } from '../assets/envelope.svg';
@@ -30,6 +29,13 @@ const LoginForm = ({ isLogin, setIsLogin }) => {
 		setPassword('');
 		setIsLogin(false);
 	};
+
+	useEffect(() => {
+		const fullName = localStorage.getItem('userName');
+		if (fullName) {
+			setUserName(fullName);
+		}
+	}, []);
 
 	return (
 		<div className="navegation-login">

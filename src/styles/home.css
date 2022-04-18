@@ -65,7 +65,7 @@
 	}
 	.form-price__buttons {
 		display: flex;
-		justify-content: end;
+		justify-content: flex-end;
 		margin-top: 20px;
 	}
 	.form-price .button-reset {
@@ -88,8 +88,8 @@
 	.filter-categories {
 		display: flex;
 		flex-direction: column;
-		justify-content: start;
-		align-items: start;
+		justify-content: flex-start;
+		align-items: flex-start;
 	}
 	.filter-price .title,
 	.filter-categories .title {

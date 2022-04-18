@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Footer, LoadingScreen, NavBar } from './components';
-import { Home, ProductDetail, Shop } from './Pages';
+import { Home, ProductDetail, Purchases } from './Pages';
 
 function App() {
 	const isLoading = useSelector(state => state.isLoading);
@@ -14,8 +14,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/products/:id" element={<ProductDetail />} />
-				<Route path="/shop/:id" element={<Shop />} />
-				<Route path="/purchases" element={<Shop />} />
+				<Route path="/shop/:id" element={<Purchases />} />
+				<Route path="/purchases" element={<Purchases />} />
 			</Routes>
 			<Footer />
 		</HashRouter>

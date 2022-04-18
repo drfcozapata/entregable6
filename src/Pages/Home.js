@@ -18,7 +18,6 @@ const Home = () => {
 	const products = useSelector(state => state.products);
 	const categories = useSelector(state => state.categories);
 	const [searchProduct, setSearchProduct] = React.useState('');
-	// const isActive = useSelector(state => state.isActive);
 
 	useEffect(() => {
 		dispatch(getProductsThunk());
@@ -62,8 +61,6 @@ const Home = () => {
 							<UpArrow />
 						</div>
 						<button
-							// disabled={!isActive ? true : false}
-							// className={`button-category ${!isActive ? 'active' : ''}`}
 							className="button-category active"
 							onClick={() => {
 								dispatch(getProductsThunk());
@@ -74,8 +71,6 @@ const Home = () => {
 						{categories &&
 							categories.data?.categories.map(category => (
 								<button
-									// disabled={isActive ? true : false}
-									// className={`button-category ${isActive ? 'active' : ''}`}
 									className="button-category"
 									key={category.id}
 									onClick={() => {
@@ -112,13 +107,11 @@ const Home = () => {
 							<ul className="products-cards">
 								{products.data?.products.map(productsItem => (
 									<Link
+										key={productsItem?.id}
 										to={`/products/${productsItem?.id}`}
 										style={{ textDecoration: 'none', color: '#515151' }}
 									>
-										<ProductCard
-											key={productsItem?.id}
-											productsItem={productsItem}
-										/>
+										<ProductCard productsItem={productsItem} />
 									</Link>
 								))}
 							</ul>

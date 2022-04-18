@@ -60,7 +60,6 @@ export const filterCategoryThunk = id => {
 			)
 			.then(response => dispatch(setProducts(response.data)))
 			.finally(() => {
-				// dispatch(setIsActive(true));
 				dispatch(setIsLoading(false));
 			});
 	};
@@ -92,13 +91,13 @@ export const loginThunk = userCredentials => {
 	};
 };
 
-export const addProductThunk = product => {
+export const addProductThunk = newProduct => {
 	return dispatch => {
 		dispatch(setIsLoading(true));
 		return axios
 			.post(
 				'https://ecommerce-api-react.herokuapp.com/api/v1/cart/',
-				product,
+				newProduct,
 				token
 			)
 			.then(response => {
