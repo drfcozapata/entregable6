@@ -11,6 +11,7 @@
 	transform: translateX(310px);
 	transition: 1s;
 	color: #515151;
+	/* overflow-y: scroll; */
 }
 .open {
 	transform: translateX(0);
