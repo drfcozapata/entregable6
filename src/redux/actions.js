@@ -4,10 +4,8 @@ export const actions = {
 	setProducts: 'SET_PRODUCTS',
 	setIsLoading: 'SET_IS_LOADING',
 	setCategories: 'SET_CATEGORIES',
-	setIsActive: 'SET_IS_ACTIVE',
+	setPurchases: 'SET_PURCHASES',
 };
-
-const token = localStorage.getItem('token');
 
 export const setProducts = products => ({
 	type: actions.setProducts,
@@ -24,9 +22,9 @@ export const setCategories = categories => ({
 	payload: categories,
 });
 
-export const setIsActive = isActive => ({
-	type: actions.setIsActive,
-	payload: isActive,
+export const setPurchases = purchases => ({
+	type: actions.setPurchases,
+	payload: purchases,
 });
 
 export const getProductsThunk = () => {
@@ -91,19 +89,40 @@ export const loginThunk = userCredentials => {
 	};
 };
 
+const getConfig = () => ({
+	headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+});
+
 export const addProductThunk = newProduct => {
 	return dispatch => {
 		dispatch(setIsLoading(true));
 		return axios
 			.post(
-				'https://ecommerce-api-react.herokuapp.com/api/v1/cart/',
+				'https://ecommerce-api-react.herokuapp.com/api/v1/cart',
 				newProduct,
-				token
+				getConfig()
 			)
 			.then(response => {
 				console.log(response.data);
 			})
 			.catch(error => console.log(error))
+			.finally(() => dispatch(setIsLoading(false)));
+	};
+};
+
+export const getPurchasesThunk = () => {
+	return dispatch => {
+		dispatch(setIsLoading(true));
+		return axios
+			.get('https://ecommerce-api-react.herokuapp.com/api/v1/cart', getConfig())
+			.then(response => {
+				dispatch(setPurchases(response.data));
+			})
+			.catch(error => {
+				if (error.response.status === 404) {
+					dispatch(setPurchases([]));
+				}
+			})
 			.finally(() => dispatch(setIsLoading(false)));
 	};
 };

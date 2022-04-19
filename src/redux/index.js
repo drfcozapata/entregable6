@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 	products: [],
 	isLoading: false,
 	categories: [],
-	isActive: false,
+	purchases: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -24,10 +24,10 @@ const reducer = (state = INITIAL_STATE, action) => {
 				...state,
 				categories: action.payload,
 			};
-		case actions.setIsActive:
+		case actions.setPurchases:
 			return {
 				...state,
-				isActive: action.payload,
+				purchases: action.payload,
 			};
 		default:
 			return state;

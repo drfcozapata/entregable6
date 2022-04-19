@@ -12,7 +12,7 @@ import { ReactComponent as ChevronLeft } from '../assets/chevron-left.svg';
 import { ReactComponent as ChevronRight } from '../assets/chevron-right.svg';
 import { Quantity, ProductCard } from '../components';
 
-const ProductDetail = () => {
+const ProductDetail = ({ isLogin, setIsLogin }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products);
@@ -55,9 +55,12 @@ const ProductDetail = () => {
 	);
 
 	const addToCart = () => {
-		const newProduct = { product: id, quantity: `${quantity}` };
-		dispatch(addProductThunk(newProduct));
-		console.log(newProduct);
+		const newProduct = { id: id, quantity: `${quantity}` };
+		if (localStorage.getItem('token') === '') {
+			setIsLogin(true);
+		} else {
+			dispatch(addProductThunk(newProduct));
+		}
 	};
 
 	return (
@@ -66,7 +69,7 @@ const ProductDetail = () => {
 			<div className="detail-nav">
 				<Link to={'/'} style={{ textDecoration: 'none', color: '#CCC' }}>
 					<h4>Home</h4>
-				</Link>{' '}
+				</Link>
 				<span className="detail-nav__arrow">
 					<RightArrow />
 				</span>

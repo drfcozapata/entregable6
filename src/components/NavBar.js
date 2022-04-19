@@ -5,9 +5,24 @@ import { ReactComponent as Archive } from '../assets/archive.svg';
 import { ReactComponent as Cart } from '../assets/cart.svg';
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
+import { Purchases } from '../Pages';
+import { useDispatch } from 'react-redux';
+import { getPurchasesThunk } from '../redux/actions';
 
-const NavBar = () => {
-	const [isLogin, setIsLogin] = useState(false);
+const NavBar = ({ isLogin, setIsLogin }) => {
+	const [isPurchasesOpen, setIsPurchasesOpen] = useState(false);
+	const dispatch = useDispatch();
+
+	const openPurchases = () => {
+		if (localStorage.getItem('token') === '') {
+			setIsLogin(true);
+		} else {
+			setIsPurchasesOpen(!isPurchasesOpen);
+			if (isPurchasesOpen !== true) {
+				dispatch(getPurchasesThunk());
+			}
+		}
+	};
 
 	return (
 		<header className="header">
@@ -30,7 +45,10 @@ const NavBar = () => {
 						</button>
 					</li>
 					<li className="text-center">
-						<button style={{ color: '#ccc' }}>
+						<button
+							onClick={openPurchases}
+							style={{ color: `${!isPurchasesOpen ? '#ccc' : '#f85555'}` }}
+						>
 							<Cart />
 						</button>
 					</li>
@@ -38,6 +56,8 @@ const NavBar = () => {
 			</nav>
 
 			<LoginForm isLogin={isLogin} setIsLogin={setIsLogin} />
+
+			<Purchases isOpen={isPurchasesOpen} />
 		</header>
 	);
 };
