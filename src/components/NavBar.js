@@ -57,7 +57,7 @@ const NavBar = ({ isLogin, setIsLogin }) => {
 
 			<LoginForm isLogin={isLogin} setIsLogin={setIsLogin} />
 
-			{/* <Purchases isOpen={isPurchasesOpen} /> */}
+			<Purchases isOpen={isPurchasesOpen} />
 		</header>
 	);
 };

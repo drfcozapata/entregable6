@@ -5,13 +5,13 @@
 	height: calc(100vh - 55px);
 	z-index: 2;
 	background-color: white;
-	width: 300px;
+	width: 320px;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 	padding: 20px;
-	transform: translateX(310px);
+	transform: translateX(330px);
 	transition: 1s;
 	color: #515151;
-	/* overflow-y: scroll; */
+	overflow-y: scroll;
 }
 .open {
 	transform: translateX(0);
@@ -60,6 +60,19 @@ p.total {
 .total-price h4 {
 	margin: 0;
 	padding: 0;
+}
+.total-purchase {
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+}
+.total-purchase_total {
+	margin-top: 12px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #f85555;
 }
 
 @media screen and (min-width: 768px) {

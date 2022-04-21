@@ -35,51 +35,87 @@ const Home = () => {
 			<div className="main">
 				{/* Columna para filtrado de productos */}
 				<div className="filter-grid">
-					<div className="filter-price">
-						<div className="title">
-							<h3>Price</h3>
-							<UpArrow />
-						</div>
-						<form className="form-group form-price">
-							<div className="form-price__filter">
-								<label htmlFor="from">From:</label>
-								<input type="number" className="form-control" id="from" />
-							</div>
-							<div className="form-price__filter">
-								<label htmlFor="to">To:</label>
-								<input type="number" className="form-control" id="to" />
-							</div>
-							<div className="form-price__buttons">
-								<button className="button-reset">Reset</button>
-								<button className="button-price">Filter Price</button>
-							</div>
-						</form>
-					</div>
-					<div className="filter-categories">
-						<div className="title">
-							<h3>Categories</h3>
-							<UpArrow />
-						</div>
-						<button
-							className="button-category active"
-							onClick={() => {
-								dispatch(getProductsThunk());
-							}}
-						>
-							All
-						</button>
-						{categories &&
-							categories.data?.categories.map(category => (
+					<div className="accordion" id="accordionOne">
+						<div className="accordion-item filter-price">
+							<h2 className="accordion-header" id="headingOne">
 								<button
-									className="button-category"
-									key={category.id}
-									onClick={() => {
-										dispatch(filterCategoryThunk(category.id));
-									}}
+									className="accordion-button"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#collapseOne"
+									aria-expanded="true"
+									aria-controls="collapseOne"
 								>
-									{category.name}
+									<h3>Price</h3>
 								</button>
-							))}
+							</h2>
+							<div
+								id="collapseOne"
+								className="accordion-collapse collapse show"
+								aria-labelledby="headingOne"
+							>
+								<div className="accordion-body">
+									<form className="form-group form-price">
+										<div className="form-price__filter">
+											<label htmlFor="from">From:</label>
+											<input type="number" className="form-control" id="from" />
+										</div>
+										<div className="form-price__filter">
+											<label htmlFor="to">To:</label>
+											<input type="number" className="form-control" id="to" />
+										</div>
+										<div className="form-price__buttons">
+											<button className="button-reset">Reset</button>
+											<button className="button-price">Filter Price</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="accordion" id="accordionTwo">
+						<div className="accordion-item">
+							<h2 className="accordion-header" id="headingTwo">
+								<button
+									className="accordion-button"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#collapseTwo"
+									aria-expanded="true"
+									aria-controls="collapseTwo"
+								>
+									<h3>Categories</h3>
+								</button>
+							</h2>
+							<div
+								id="collapseTwo"
+								className="accordion-collapse collapse show"
+								aria-labelledby="headingTwo"
+							>
+								<div className="accordion-body filter-categories">
+									<button
+										className="button-category active"
+										onClick={() => {
+											dispatch(getProductsThunk());
+										}}
+									>
+										All
+									</button>
+									{categories &&
+										categories.data?.categories.map(category => (
+											<button
+												className="button-category"
+												key={category.id}
+												onClick={() => {
+													dispatch(filterCategoryThunk(category.id));
+												}}
+											>
+												{category.name}
+											</button>
+										))}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 

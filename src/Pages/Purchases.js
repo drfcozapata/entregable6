@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Empty } from '../components';
 import { ReactComponent as Trash } from '../assets/trash.svg';
 import '../styles/purchases.css';
 
 const Purchases = ({ isOpen }) => {
-	const [shoppingCart, setShoppingCart] = useState([]);
 	const purchases = useSelector(state => state.purchases);
 
-	useEffect(() => {
-		setShoppingCart(purchases.data?.cart.products);
-	}, [purchases.data, isOpen]);
-	console.log(shoppingCart);
+	const totalPurchases = [];
+
+	purchases.data?.cart.products.map(product =>
+		totalPurchases.push(product.price * product.productsInCart?.quantity)
+	);
+	const total = totalPurchases.reduce((a, b) => a + b, 0);
 
 	return (
 		<div className={`purchases-modal ${isOpen ? 'open' : ''}`}>
 			<h3 className="purchase-title">Shopping Cart</h3>
-			{shoppingCart.length > 0 ? (
+			{purchases.data?.cart.products.length > 0 ? (
 				<ul className="shopping-cart">
-					{shoppingCart.map(product => (
+					{purchases.data?.cart.products.map(product => (
 						<li className="container" key={product.id}>
 							<h4>{product.title}</h4>
 							<p className="brand">{product.brand}</p>
@@ -37,7 +38,7 @@ const Purchases = ({ isOpen }) => {
 							</div>
 							<div className="total-price">
 								<p className="total">Total:</p>
-								<h4>${product.price * product.productsInCart?.quantity}</h4>
+								<h4>${product.price * product.productsInCart?.quantity}.00</h4>
 							</div>
 						</li>
 					))}
@@ -45,7 +46,13 @@ const Purchases = ({ isOpen }) => {
 			) : (
 				<Empty />
 			)}
-			<div className="total-purchases"></div>
+			<div className="total-purchases">
+				<hr />
+				<div className="total-purchase">
+					<p className="total-purchase_total">Total:</p>
+					<h3>${total}.00</h3>
+				</div>
+			</div>
 		</div>
 	);
 };
