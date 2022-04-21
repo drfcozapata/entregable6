@@ -7,7 +7,6 @@ import {
 	getProductsThunk,
 } from '../redux/actions';
 import '../styles/home.css';
-import { ReactComponent as UpArrow } from '../assets/up-arrow.svg';
 import { ReactComponent as GlassSearch } from '../assets/glass-search.svg';
 import Empty from '../components/Empty';
 import { Link } from 'react-router-dom';
