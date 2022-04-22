@@ -3,15 +3,16 @@ import '../styles/nav-bar.css';
 import { ReactComponent as User } from '../assets/user.svg';
 import { ReactComponent as Archive } from '../assets/archive.svg';
 import { ReactComponent as CartSvg } from '../assets/cart.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import { useDispatch } from 'react-redux';
 import { getCartThunk } from '../redux/actions';
 import { Cart } from '../Pages';
 
-const NavBar = ({ isLogin, setIsLogin }) => {
-	const [isCartOpen, setIsCartOpen] = useState(false);
+const NavBar = ({ isLogin, setIsLogin, isCartOpen, setIsCartOpen }) => {
+	const [isPurchasesOpen, setIsPurchasesOpen] = useState(false);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const openCart = () => {
 		if (localStorage.getItem('token') === '') {
@@ -21,6 +22,15 @@ const NavBar = ({ isLogin, setIsLogin }) => {
 			if (isCartOpen !== true) {
 				dispatch(getCartThunk());
 			}
+		}
+	};
+
+	const openPurchases = () => {
+		if (localStorage.getItem('token') === '') {
+			setIsLogin(true);
+		} else {
+			setIsPurchasesOpen(!isPurchasesOpen);
+			navigate('/purchases');
 		}
 	};
 
@@ -40,7 +50,10 @@ const NavBar = ({ isLogin, setIsLogin }) => {
 						</button>
 					</li>
 					<li className="text-center">
-						<button style={{ color: '#ccc' }}>
+						<button
+							onClick={openPurchases}
+							style={{ color: `${!isPurchasesOpen ? '#ccc' : '#f85555'}` }}
+						>
 							<Archive />
 						</button>
 					</li>
@@ -57,7 +70,7 @@ const NavBar = ({ isLogin, setIsLogin }) => {
 
 			<LoginForm isLogin={isLogin} setIsLogin={setIsLogin} />
 
-			<Cart isOpen={isCartOpen} />
+			<Cart isOpen={isCartOpen} setIsOpen={setIsCartOpen} />
 		</header>
 	);
 };

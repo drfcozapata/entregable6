@@ -4,7 +4,6 @@ html {
 	box-sizing: border-box;
 	font-size: 62.5%;
 }
-
 *,
 *:before,
 *:after {
@@ -14,12 +13,10 @@ html {
 	text-decoration: none;
 	list-style: none;
 }
-
 .App {
 	text-align: center;
 	margin-top: 30px;
 }
-
 i {
 	font-size: 35px;
 	color: #fff;

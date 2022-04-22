@@ -2,7 +2,7 @@
 	border-radius: 8px;
 	margin: 0 0 20px 0;
 }
-.card-header {
+.product-card.card-header {
 	background-color: transparent;
 	min-height: 270px;
 }

@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import {
 	addProductThunk,
 	filterCategoryThunk,
+	getCartThunk,
 	getProductsThunk,
 } from '../redux/actions';
 import '../styles/product-details.css';
@@ -12,7 +13,7 @@ import { ReactComponent as ChevronLeft } from '../assets/chevron-left.svg';
 import { ReactComponent as ChevronRight } from '../assets/chevron-right.svg';
 import { Quantity, ProductCard } from '../components';
 
-const ProductDetail = ({ isLogin, setIsLogin }) => {
+const ProductDetail = ({ setIsLogin, setIsCartOpen }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products);
@@ -60,6 +61,8 @@ const ProductDetail = ({ isLogin, setIsLogin }) => {
 			setIsLogin(true);
 		} else {
 			dispatch(addProductThunk(newProduct));
+			setIsCartOpen(true);
+			dispatch(getCartThunk());
 		}
 	};
 

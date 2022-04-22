@@ -108,9 +108,6 @@ export const addProductThunk = newProduct => {
 				newProduct,
 				getConfig()
 			)
-			.then(response => {
-				console.log(response.data);
-			})
 			.catch(error => console.log(error))
 			.finally(() => dispatch(setIsLoading(false)));
 	};
@@ -153,12 +150,26 @@ export const getTotalPurchasesThunk = () => {
 		return axios
 			.get(
 				'https://ecommerce-api-react.herokuapp.com/api/v1/purchases',
-				{},
 				getConfig()
 			)
 			.then(response => {
-				console.log(response.data);
+				dispatch(setPurchases(response.data));
 			})
+			.catch(error => console.log(error))
+			.finally(() => dispatch(setIsLoading(false)));
+	};
+};
+
+export const addPurchaseThunk = () => {
+	return dispatch => {
+		dispatch(setIsLoading(true));
+		return axios
+			.post(
+				'https://ecommerce-api-react.herokuapp.com/api/v1/purchases',
+				{},
+				getConfig()
+			)
+			.then(dispatch(getTotalPurchasesThunk()))
 			.catch(error => console.log(error))
 			.finally(() => dispatch(setIsLoading(false)));
 	};

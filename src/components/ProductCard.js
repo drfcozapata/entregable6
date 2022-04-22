@@ -6,7 +6,7 @@ const ProductCard = ({ productsItem }) => {
 	return (
 		<>
 			<li className="card">
-				<div className="card-header">
+				<div className="product-card card-header">
 					<figure>
 						<div className="mt-3 mb-3 hover-animation">
 							<img

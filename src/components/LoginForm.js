@@ -86,9 +86,9 @@ const LoginForm = ({ isLogin, setIsLogin }) => {
 							onChange={e => setPassword(e.target.value)}
 						/>
 						<button className="btn btn-danger">Login</button>
-						<p className="text-center login-account">
+						{/* <p className="text-center login-account">
 							Dont have an account? Sign Up
-						</p>
+						</p> */}
 					</>
 				)}
 			</form>

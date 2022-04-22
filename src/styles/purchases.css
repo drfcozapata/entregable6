@@ -1,0 +1,37 @@
+.purchases {
+	margin-top: 40px;
+	color: #515151;
+}
+.purchase-item {
+	margin-bottom: 20px;
+}
+.purchases-title {
+	margin: 60px 0;
+}
+.purchases-container .card-header {
+	padding: 20px !important;
+	height: 60px;
+}
+.purchases-container .card-body {
+	padding: 20px 20px 30px 20px;
+}
+.purchase-product-info {
+	padding-top: 10px;
+	margin: 0 30px;
+	display: grid;
+	grid-template-columns: 7fr 2fr 3fr;
+	align-items: center;
+}
+.purchase-quantity {
+	padding-top: 4px;
+	height: 30px;
+	width: 60px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+.products-purchases h4 span {
+	margin-right: 5px;
+}

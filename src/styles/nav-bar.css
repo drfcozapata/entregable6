@@ -30,7 +30,6 @@ li {
 .header h3 {
 	font-size: 2rem;
 }
-
 .header .navegation {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -58,6 +57,7 @@ li {
 		padding: 2rem 0;
 	}
 }
+
 @media screen and (min-width: 992px) {
 	.header {
 		padding-left: 50px;

@@ -2,11 +2,13 @@ import React from 'react';
 import { Empty } from '../components';
 import { ReactComponent as Trash } from '../assets/trash.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePurchaseThunk } from '../redux/actions';
+import { addPurchaseThunk, deletePurchaseThunk } from '../redux/actions';
 import '../styles/cart.css';
+import { useNavigate } from 'react-router-dom';
 
-const Cart = ({ isOpen }) => {
+const Cart = ({ isOpen, setIsOpen }) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const cart = useSelector(state => state.cart);
 
@@ -16,6 +18,12 @@ const Cart = ({ isOpen }) => {
 		totalCart.push(product.price * product.productsInCart?.quantity)
 	);
 	const total = totalCart.reduce((a, b) => a + b, 0);
+
+	const addPurchase = () => {
+		dispatch(addPurchaseThunk());
+		setIsOpen(false);
+		navigate('/purchases');
+	};
 
 	return (
 		<div className={`cart-modal ${isOpen ? 'open' : ''}`}>
@@ -59,6 +67,9 @@ const Cart = ({ isOpen }) => {
 					<h3>${total}.00</h3>
 				</div>
 			</div>
+			<button className="button-cart" onClick={addPurchase}>
+				Checkout
+			</button>
 		</div>
 	);
 };
