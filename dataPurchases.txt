@@ -1,0 +1,40 @@
+
+{
+    "status": "success",
+    "data": {
+        "purchases": [
+            {
+                "id": 529,
+                "userId": 118,
+                "cartId": 499,
+                "createdAt": "2022-04-21T22:53:24.271Z",
+                "updatedAt": "2022-04-21T22:53:24.271Z",
+                "cart": {
+                    "id": 499,
+                    "userId": 118,
+                    "status": "purchased",
+                    "products": [
+                        {
+                            "id": 9,
+                            "userId": 1,
+                            "title": "SAMSUNG Galaxy Book Pro",
+                            "description": "Book Pro Intel Evo Platform Laptop Computer 15.6 inches AMOLED Screen 11th Gen Intel Core i7 Processor 16GB Memory 512GB SSD Long-Lasting Battery, Mystic Blue. EASY ON THE EYES: Everything looks brilliant with the first 13.3/15.6 AMOLED screen in a Galaxy Book; Enjoy vibrant viewing while you work or school inside or in direct sunlight, and it lessens eye strain by reducing harmful blue light. Sleek, ultrathin and available in a stylish, dual color design, Galaxy Book Pro is the lightest laptop and won’t weigh you down.",
+                            "brand": "Samsung",
+                            "price": "1050.00",
+                            "quantity": 3000,
+                            "categoryId": 2,
+                            "status": "active",
+                            "productsInCart": {
+                                "id": 9345,
+                                "cartId": 499,
+                                "productId": 9,
+                                "quantity": 1,
+                                "status": "purchased"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

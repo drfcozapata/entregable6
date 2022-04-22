@@ -1,4 +1,4 @@
-.purchases-modal {
+.cart-modal {
 	position: fixed;
 	top: 55px;
 	right: 0;
@@ -61,14 +61,14 @@ p.total {
 	margin: 0;
 	padding: 0;
 }
-.total-purchase {
+.total-cart {
 	margin-top: 20px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	gap: 10px;
 }
-.total-purchase_total {
+.total-cart_total {
 	margin-top: 12px;
 	font-size: 18px;
 	font-weight: bold;
@@ -76,14 +76,14 @@ p.total {
 }
 
 @media screen and (min-width: 768px) {
-	.purchases-modal {
+	.cart-modal {
 		top: 65px;
 		height: calc(100vh - 65px);
 	}
 }
 
 @media screen and (min-width: 992px) {
-	.purchases-modal {
+	.cart-modal {
 		top: 75px;
 		height: calc(100vh - 75px);
 	}

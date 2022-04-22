@@ -4,6 +4,7 @@ export const actions = {
 	setProducts: 'SET_PRODUCTS',
 	setIsLoading: 'SET_IS_LOADING',
 	setCategories: 'SET_CATEGORIES',
+	setCart: 'SET_CART',
 	setPurchases: 'SET_PURCHASES',
 };
 
@@ -20,6 +21,11 @@ export const setIsLoading = isLoading => ({
 export const setCategories = categories => ({
 	type: actions.setCategories,
 	payload: categories,
+});
+
+export const setCart = cart => ({
+	type: actions.setCart,
+	payload: cart,
 });
 
 export const setPurchases = purchases => ({
@@ -110,19 +116,50 @@ export const addProductThunk = newProduct => {
 	};
 };
 
-export const getPurchasesThunk = () => {
+export const getCartThunk = () => {
 	return dispatch => {
 		dispatch(setIsLoading(true));
 		return axios
 			.get('https://ecommerce-api-react.herokuapp.com/api/v1/cart', getConfig())
 			.then(response => {
-				dispatch(setPurchases(response.data));
+				dispatch(setCart(response.data));
 			})
 			.catch(error => {
 				if (error.response.status === 404) {
-					dispatch(setPurchases([]));
+					dispatch(setCart([]));
 				}
 			})
+			.finally(() => dispatch(setIsLoading(false)));
+	};
+};
+
+export const deletePurchaseThunk = id => {
+	return dispatch => {
+		dispatch(setIsLoading(true));
+		return axios
+			.delete(
+				`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${id}`,
+				getConfig()
+			)
+			.then(() => dispatch(getCartThunk()))
+			.catch(error => console.log(error))
+			.finally(() => dispatch(setIsLoading(false)));
+	};
+};
+
+export const getTotalPurchasesThunk = () => {
+	return dispatch => {
+		dispatch(setIsLoading(true));
+		return axios
+			.get(
+				'https://ecommerce-api-react.herokuapp.com/api/v1/purchases',
+				{},
+				getConfig()
+			)
+			.then(response => {
+				console.log(response.data);
+			})
+			.catch(error => console.log(error))
 			.finally(() => dispatch(setIsLoading(false)));
 	};
 };

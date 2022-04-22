@@ -19,8 +19,10 @@ function App() {
 					path="/products/:id"
 					element={<ProductDetail isLogin={isLogin} setIsLogin={setIsLogin} />}
 				/>
-				<Route path="/shop/:id" element={<Purchases />} />
-				<Route path="/purchases" element={<Purchases />} />
+				<Route
+					path="/purchases"
+					element={<Purchases isLogin={isLogin} setIsLogin={setIsLogin} />}
+				/>
 			</Routes>
 			<Footer />
 		</HashRouter>
